@@ -4,7 +4,7 @@ let request = require('request')
 let EAT = 'EAT', COOK = 'COOK', NOP = 'NOP', NONE = 'NONE'
 
 let getStatus = (callback) => {
-	request.get('http://www.eetlijst.nl/huizeunderground-zweepje', (err, res, body) => {
+	request.get('http://www.eetlijst.nl/===-===', (err, res, body) => {
 		body = body.replace(/[ \r\n]/g, "")
 		let regex = /<inputtype="submit"name="persoon(\d)"value="([a-zA-Z ]+)"><\/td><td>(?:<imgsrc="(eet|kook|nop)\.gif">)?((?:<imgsrc="eet.gif">)*)<\/td>/g
 		
@@ -31,8 +31,8 @@ let getStatus = (callback) => {
 let setStatus = (what, callback = () => {}) => {
 	let mapping = { EAT : 'wat/1' , COOK : 'wat1' , NOP : 'wat0' }
 	let form = {
-		'login' : 'huizeunderground',
-		'pass' : 'zweepje',
+		'login' : '===',
+		'pass' : '===',
 		'persoon' : 0,
 		[mapping[what]] : 'what'
 	}
