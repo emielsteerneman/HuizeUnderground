@@ -1,0 +1,12 @@
+body {
+  margin: 0px;
+  padding: 0px; }
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none; }
+
+.header {
+  color: #fff;
+  background-color: #060606; }

@@ -1,0 +1,35 @@
+doctype
+html
+	head
+	link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css')
+	link(rel='stylesheet' href='/css/style.css')
+	
+	title #{title} - My Site
+	body
+		.container-fluid.header: .container.header
+			.row
+				.col-md-6.vcenter
+					h1 Huize Underground
+				.col-md-6.vcenter
+					if session.loggedIn
+						form.form-inline(method="post" action="/logout")
+							.form-group.pull-right
+								input.form-control.input-sm.btn-sm.btn-success(type="submit" value="logout")
+					else	
+						.pull-right
+							form.form-inline(method="post" action="/login")
+								.form-group
+									input.form-control.input-sm(name="username" type="text" placeholder="username")
+								.form-group
+									input.form-control.input-sm(name="password" type="password" placeholder="password")
+								.form-group
+									input.form-control.input-sm.btn-sm.btn-success(type="submit" value="login")
+		
+		.container
+			h1= title
+			.main-content
+				block content
+			.sidebar
+				block sidebar
+		footer
+			p Running on node with Express and Jade

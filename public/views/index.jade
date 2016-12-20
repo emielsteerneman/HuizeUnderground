@@ -1,0 +1,16 @@
+extend layout
+block content
+	h1 Jade - node template engine
+	p.
+		I have no idea what this dot is doing 
+		Does it mean multiline or something?
+	b= text
+	br
+	if session.loggedIn
+		form(method="post" action="/logout")
+			input(type="submit" value="logout")
+	else	
+		form(method="post" action="/login")
+			input(name="username" type="text" placeholder="username" value="username")
+			input(name="password" type="text" placeholder="password" value="password")
+			input(type="submit" value="login")

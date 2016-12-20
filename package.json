@@ -4,18 +4,25 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "bcrypt": "^1.0.1",
     "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "forever": "^0.15.3",
+    "jade": "^1.11.0",
     "lodash": "^4.17.2",
     "mongoose": "^4.7.2",
     "path": "^0.12.7",
+    "request": "^2.79.0",
     "serialport": "^4.0.6"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "npm run watch-scss & nodemon server.js",
+    "watch-scss": "nodemon -e scss -w public/scss -x 'npm run build-scss'",
+    "build-scss": "node-sass public/scss/style.scss public/css/style.css"
   },
   "author": "",
   "license": "ISC"

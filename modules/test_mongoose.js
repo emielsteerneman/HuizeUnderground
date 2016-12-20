@@ -1,7 +1,8 @@
 let l = console.log
 
 let mongoose = require('mongoose')
-var express = require('express')
+let express = require('express')
+let User = require('../models/User.js')
 
 var db = mongoose.connection
 
@@ -14,14 +15,39 @@ mongoose.connect('mongodb://localhost/test', err => {
 	l('connected')
 })
 
-var Schema = mongoose.Schema
-var UserSchema = new Schema({
-	first_name: String,
-	last_name : String,
-	email : String
+var henk = new User({
+	name: 'Henk',
+	username: 'henk',
+	password:'pw',
+	created: Date.now(),
+	last_login: Date.now()
 })
 
-var User = mongoose.model('users', UserSchema)
+// henk.save((err, henk) => {
+	// l('saved!')
+	// l(err)
+	// l(henk)
+// })
 
-var app = express()
+User.find({'name': 'Henk'}, (err, result) => {
+	if(err) console.error(err)
+	
+	l('Query!')
+	l(result.length)
+})
+
+
+l(henk._id)
+
+
+
+
+
+
+
+
+
+
+
+
 
