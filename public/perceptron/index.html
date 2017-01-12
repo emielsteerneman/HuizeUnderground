@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<script src='js/libs/underscore-min.js'></script>
+		<script src='js/libs/jquery.js'></script>
+		<script src='js/libs/jcanvas.min.js'></script>
+		<script src='js/settings.js'></script>
+		<script src='js/_Artist.js'></script>
+		<script src='js/_Trainer.js'></script>
+		
+		<style>
+		body {
+			padding: 0px;
+			margin: 0px;
+			overflow:hidden;
+		}
+		
+		.panel {
+			position: absolute;
+			z-index: 1;
+		}
+		.textpanel {
+			padding: 5px;
+			text-align: left;
+			background: white;
+		}
+		
+		#canvasBottom {
+			background-color: #000;
+		}
+
+		#statsPanel{
+			right: 10px;
+			bottom: 10px;
+		}
+		
+		/* ==== Config panel ==== */
+		#configPanel {
+			right: 10px;
+			top: 10px;
+			width: 300;
+		}
+		#configPanel .desc, #configPanel input{
+			display: inline-block;
+			width: 145px;
+		}
+		#configPanel .addPoint .desc{
+			width: 100px;
+		}
+		#configPanel .addPoint input{
+			width: 40px;
+		}
+		/* ====================== */
+		
+		/* Table */
+		table {
+			border-collapse: collapse;
+		}
+		td {
+			padding: 5px;
+			border: 1px solid black;
+		}
+		
+		.btn {
+			padding : 8px 15px;
+			margin-left : 10px;
+			display: inline-block;
+			background: #111;
+			border: 1px solid #222;
+			border-top: 0px;
+			color : white;
+			cursor: pointer;
+			vertical-align: middle;
+		}
+		
+		canvas{
+			position: absolute;
+		}
+		</style>
+		
+	</head>	
+	
+	<body>
+		<canvas id='canvasBottom' 	></canvas>
+		<canvas id='canvas1' 	  	></canvas>
+		<canvas id='canvas0' 		></canvas>
+		<canvas id='canvasTop' 		></canvas>
+		
+		<div class='panel' id="buttons">
+			<div class='btn' id="clearCanvas"> Clear canvas (c) </div>
+			<div class='btn' id="exportSet"> Export </div>
+			<div class='btn' id="clearSet"> Clear dataset (shift+c) </div>
+			<div class='btn' id="randomDataset"> Random dataset (r) </div>
+			<div class='btn' id="train"> Train (enter) </div>
+		</div>
+		
+		<div class='panel textpanel' id='statsPanel'></div>
+		
+		<div class='panel textpanel' id='configPanel'>
+			<b> Config </b><br><br>
+			z : remove newest point
+			<br><br>
+			<div class='desc'> Random factor 	</div><input id="randomFactor" 		type="text" value=100 />
+			<div class='desc'> Learning factor 	</div><input id="learningFactor" 	type="text" value=0.01 />
+			<div class='desc'> nIterations		</div><input id="nIterations" 		type="text" value=100 />
+			<div class='desc'> Train iterations	</div><input id="trainIterations" 	type="text" value=300 />
+			<div class='desc'> Stop when done	</div><input id="stopWhenDone"		type="checkbox" checked />
+			<br><br>
+			<div class='desc'> Perceptron rule	</div><input id="perceptronRule" 	type="checkbox" checked />
+			<div class='desc'> Delta rule		</div><input id="deltaRule"			type="checkbox" checked />
+			<br><br>
+			
+			<div class='addPoint'>
+				<div class='desc'> Add point </div>
+				<input id="addX" type="text" placeholder='x' />
+				<input id="addY" type="text" placeholder='y' />
+				<input id="addClass" type="checkbox" checked />
+				<input id="configAddPoint" type='submit' value='add' />
+			</div>
+			
+			
+		</div>
+		
+		<script src='js/_script.js'></script>
+	</body>
+</html>
