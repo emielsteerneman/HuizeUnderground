@@ -2,6 +2,10 @@ body {
   margin: 0px;
   padding: 0px; }
 
+a, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none; }
+
 .vcenter {
   display: inline-block;
   vertical-align: middle;

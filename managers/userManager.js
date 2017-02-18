@@ -6,16 +6,12 @@ let User 		= require('../models/User.js')
 let _ 			= require('lodash')
 let bcrypt 		= require('bcrypt')
 
+let db = mongoose.connection
+
 let app = express()
 
 app.on('mount', parent => {
 	app.set('views', parent.get('views'))
-})
-
-let db = mongoose.connection
-db.on('error', l)
-mongoose.connect('mongodb://localhost/test', err => {
-	l('connected')
 })
 
 app.use('/', (req, res, next) => {
@@ -50,10 +46,21 @@ app.post('/', (req, res, next) => {
 	let password = req.body.password
 	
 	let result = User.create(name, username, password, (err, user) => {
-		if(err)
-			console.error('Error ' + err.code + ' : User already exists')
+		if(err){
+			if(err.code === '110000')
+				l('Error : ' + err.message)
+			else 
+			if(!err.code){
+				l('Error : ' + err.message)
+				_.each(err.errors, (error, key) => {
+					l(`\t ${key} -> ${error}`)
+				})
+			}
+			else
+				l('Error unknown : ' + err.code + ' : ' + err.message)
+		}
 		else
-			console.log('Success : user ' + user.username + ' created')
+			l('Success : user ' + user.username + ' created')
 	})
 
 	res.redirect('/users')

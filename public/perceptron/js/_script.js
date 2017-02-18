@@ -195,6 +195,12 @@ function keyDown(evt){
 		trainer.dataset.pop()
 		resetCanvas()
 	}
+	if(evt.key === 'x'){
+		console.log('setting z-index')
+		$('#canvas1').css({'background-color' : '#000'})
+		$('#canvas1').css({'zIndex' : 200})
+		// $('#canvas1').css({'zIndex' : -3})
+	}	
 }
 function getCursorPosition(canvas, evt){
 	rect = canvas.getBoundingClientRect();

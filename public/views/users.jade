@@ -1,29 +1,25 @@
 extend layout
 block content
-	br
-	br
-	form(method="post" action="/users")
-		.row
-			each property in userProperties
-				.col-md-2: input.form-control(name=property type="text" placeholder=property value=property)
-			.col-md-2: input.form-control.btn.btn-primary(type="submit" value="Create")
-	br
-	br
-	table.table.table-striped
-		thead
-			td: b Name
-			td: b Username
-			td: b Password
-			td: b Created
-			td: b Last login
-			td: b _id
+
+	.row
+		.col-md-10
+			table.table.table-striped
+				thead
+					td: b Name
+					td: b Username
+					td: b Created
+					td: b Last login
+			
+				each user in users
+					tr
+						td= user.name
+						td= user.username
+						td= user.created
+						td= user.last_login
+		.col-md-2
+			b New user
+			form(method="post" action="/users")
+				each property in userProperties
+					input.form-control(name=property type="text" placeholder=property)
+				input.form-control.btn.btn-primary(type="submit" value="Create")
 	
-		each user in users
-			tr
-				td= user.name
-				td= user.username
-				td= user.password
-				td= user.created
-				td= user.last_login
-				td= user._id
-				
